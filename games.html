@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameVault - All Games</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/games.css">
+</head>
+<body class="bg-gray-100">
+        <script type="application/ld+json" id="structured-data"></script> 
+    <div id="header-placeholder"></div>
+        <!-- ADD THE MOBILE SEARCH OVERLAY HERE -->
+    <div id="mobile-search-overlay" class="mobile-search-overlay">
+      <div class="mobile-search-bar">
+        <button id="mobile-search-back-btn" class="mobile-search-back-btn">←</button>
+        <input type="text" id="mobile-search-input" class="mobile-search-input" placeholder="Search games or goods" autocomplete="off">
+      </div>
+      <div id="mobile-search-results" class="mobile-search-results">
+        <!-- Search results will appear here -->
+      </div>
+    </div>
+
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <div class="breadcrumb text-sm text-gray-600 mb-6">
+            <a href="/" class="hover:text-blue-600">Home</a> › <span>Top-Up</span>
+        </div>
+
+        <div class="main-layout">
+            <aside class="sidebar">
+                <ul id="category-list" class="category-list">
+                    <li class="category-item active" data-category="Top-Up">
+                        <span class="icon">💰</span> Top-Up <span class="count">...</span>
+                    </li>
+                    <li class="category-item" data-category="Game Coins">
+                        <span class="icon">🪙</span> Game Coins <span class="count">...</span>
+                    </li>
+                    <li class="category-item" data-category="Gift Card">
+                        <span class="icon">🎁</span> Gift Card <span class="count">...</span>
+                    </li>
+                    <li class="category-item" data-category="Game Items">
+                        <span class="icon">🎮</span> Game Items <span class="count">...</span>
+                    </li>
+                    <li class="category-item" data-category="CDKEY">
+                        <span class="icon">🔑</span> CDKEY <span class="count">...</span>
+                    </li>
+                </ul>
+            </aside>
+
+            <div class="content-area">
+                <div class="content-header">
+                    <h1 id="category-title" class="text-3xl font-bold">Top-Up</h1>
+                    <div id="total-items-count" class="text-gray-500">Total ... items</div>
+                </div>
+
+                <div id="filters-container" class="filters">
+                    <button class="filter-btn active" data-sort="name">Recommended</button>
+                    <button class="filter-btn" data-sort="created_at">Latest</button>
+                </div>
+
+                <div id="all-games-grid" class="game-grid">
+                    <!-- SKELETON LOADER -->
+                    <div class="game-card shimmer"><div class="game-image bg-gray-200"></div><div class="game-info p-4"><div class="game-title h-5 bg-gray-200 rounded w-3/4"></div><div class="game-stats h-4 bg-gray-200 rounded w-1/2 mt-2"></div></div></div>
+                    <div class="game-card shimmer"><div class="game-image bg-gray-200"></div><div class="game-info p-4"><div class="game-title h-5 bg-gray-200 rounded w-3/4"></div><div class="game-stats h-4 bg-gray-200 rounded w-1/2 mt-2"></div></div></div>
+                    <div class="game-card shimmer"><div class="game-image bg-gray-200"></div><div class="game-info p-4"><div class="game-title h-5 bg-gray-200 rounded w-3/4"></div><div class="game-stats h-4 bg-gray-200 rounded w-1/2 mt-2"></div></div></div>
+                    <div class="game-card shimmer"><div class="game-image bg-gray-200"></div><div class="game-info p-4"><div class="game-title h-5 bg-gray-200 rounded w-3/4"></div><div class="game-stats h-4 bg-gray-200 rounded w-1/2 mt-2"></div></div></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+    
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" type="module" src="/supabase-client.js"></script>
+    <script type="module" src="/components.js"></script>
+    <script type="module" src="/games.js"></script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameVault - Your Gaming Marketplace</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+        <script type="application/ld+json" id="structured-data"></script> 
+    <div id="toast-container"></div>
+    
+    <div id="header-placeholder"></div>
+
+    <div id="mobile-search-overlay" class="mobile-search-overlay">
+      <div class="mobile-search-bar">
+        <button id="mobile-search-back-btn" class="mobile-search-back-btn">←</button>
+        <input type="text" id="mobile-search-input" class="mobile-search-input" placeholder="Search games or goods" autocomplete="off">
+      </div>
+      <div id="mobile-search-results" class="mobile-search-results">
+      </div>
+    </div>
+
+    <main>
+        <div class="max-w-7xl mx-auto px-4">
+
+            <section class="hero-slider">
+                <div class="slider-container">
+                </div>
+                <div id="slider-arrow-prev" class="slider-arrow prev">‹</div>
+                <div id="slider-arrow-next" class="slider-arrow next">›</div>
+                <div class="slider-dots">
+                </div>
+            </section>
+
+            <div class="categories-bar">
+                <a href="#" class="category-bar-item active"><span>💰</span> Game Top Up</a>
+                <a href="#" class="category-bar-item"><span>🪙</span> Game Coins</a>
+                <a href="#" class="category-bar-item"><span>🎁</span> Gift Card</a>
+                <a href="#" class="category-bar-item"><span>👾</span> Game Items</a>
+                <a href="#" class="category-bar-item"><span>🔑</span> CDKEY</a>
+            </div>
+
+            <section id="recently-viewed-section" class="section-transparent hidden">
+                <div class="section-header">
+                    <h2 class="section-title">Recently Viewed</h2>
+                    <button id="clear-recently-viewed" class="clear-all-btn">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                        <span>Clear All</span>
+                    </button>
+                </div>
+                <div class="carousel-container">
+                    <button class="carousel-arrow prev" data-target="recently-viewed-carousel">‹</button>
+                    <div id="recently-viewed-carousel" class="carousel"></div>
+                    <button class="carousel-arrow next" data-target="recently-viewed-carousel">›</button>
+                </div>
+            </section>
+
+            <section class="section-transparent">
+                <div class="section-header">
+                    <h2 class="section-title">All Games</h2>
+                    <a href="/games.html" id="view-all-topup" class="view-all">All (...) →</a>
+                </div>
+                <div class="game-grid" id="hot-games-grid">
+                    <div class="game-card-skeleton"><div class="skeleton-image"></div><div class="skeleton-text"></div><div class="skeleton-text short"></div></div>
+                    <div class="game-card-skeleton"><div class="skeleton-image"></div><div class="skeleton-text"></div><div class="skeleton-text short"></div></div>
+                    <div class="game-card-skeleton"><div class="skeleton-image"></div><div class="skeleton-text"></div><div class="skeleton-text short"></div></div>
+                    <div class="game-card-skeleton"><div class="skeleton-image"></div><div class="skeleton-text"></div><div class="skeleton-text short"></div></div>
+                    <div class="game-card-skeleton"><div class="skeleton-image"></div><div class="skeleton-text"></div><div class="skeleton-text short"></div></div>
+                    <div class="game-card-skeleton"><div class="skeleton-image"></div><div class="skeleton-text"></div><div class="skeleton-text short"></div></div>
+                    <div class="game-card-skeleton"><div class="skeleton-image"></div><div class="skeleton-text"></div><div class="skeleton-text short"></div></div>
+                    <div class="game-card-skeleton"><div class="skeleton-image"></div><div class="skeleton-text"></div><div class="skeleton-text short"></div></div>
+                    <div class="game-card-skeleton"><div class="skeleton-image"></div><div class="skeleton-text"></div><div class="skeleton-text short"></div></div>
+                    <div class="game-card-skeleton"><div class="skeleton-image"></div><div class="skeleton-text"></div><div class="skeleton-text short"></div></div>
+                    <div class="game-card-skeleton"><div class="skeleton-image"></div><div class="skeleton-text"></div><div class="skeleton-text short"></div></div>
+                    <div class="game-card-skeleton"><div class="skeleton-image"></div><div class="skeleton-text"></div><div class="skeleton-text short"></div></div>
+                    <div class="game-card-skeleton"><div class="skeleton-image"></div><div class="skeleton-text"></div><div class="skeleton-text short"></div></div>
+                    <div class="game-card-skeleton"><div class="skeleton-image"></div><div class="skeleton-text"></div><div class="skeleton-text short"></div></div>
+                </div>
+                <div class="view-more-container">
+                    <button id="view-more-btn" class="view-more-button">
+                        View more
+                        <svg class="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                </div>
+            </section>
+
+            <section id="bestseller-section" class="section">
+                 <div class="section-header">
+                    <h2 class="section-title" style="background: linear-gradient(45deg, #FFD700, #FFA500); color: white; padding: 5px 15px; border-radius: 12px; font-weight: bold; font-size: 1.2rem; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">🏆 Bestseller</h2>
+                    <span class="section-subtitle">Recent hot-selling games</span>
+                 </div>
+                 <div class="carousel-container">
+                    <button class="carousel-arrow prev" data-target="bestseller-carousel">‹</button>
+                    
+                    <div id="bestseller-carousel" class="premium-carousel">
+                        <div class="bestseller-card-skeleton"></div>
+                        <div class="bestseller-card-skeleton"></div>
+                        <div class="bestseller-card-skeleton"></div>
+                        <div class="bestseller-card-skeleton"></div>
+                        <div class="bestseller-card-skeleton"></div>
+                        <div class="bestseller-card-skeleton"></div>
+                    </div>
+                    
+                    <button class="carousel-arrow next" data-target="bestseller-carousel">›</button>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+    <div class="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</div>
+    
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="/supabase-client.js"></script>
+    <script type="module" src="/components.js"></script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameVault - Blog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="blog.css">
+</head>
+<body class="bg-gray-100">
+        <script type="application/ld+json" id="structured-data"></script> 
+    <div id="header-placeholder"></div>
+    <div id="mobile-search-overlay" class="mobile-search-overlay">
+      <div class="mobile-search-bar">
+        <button id="mobile-search-back-btn" class="mobile-search-back-btn">←</button>
+        <input type="text" id="mobile-search-input" class="mobile-search-input" placeholder="Search games or goods" autocomplete="off">
+      </div>
+      <div id="mobile-search-results" class="mobile-search-results">
+      </div>
+    </div>
+
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <div id="breadcrumb-container" class="text-sm text-gray-600 mb-6">
+            <a href="index.html" class="hover:text-blue-600">Home</a> › 
+            <a href="blog.html" class="hover:text-blue-600">Blog</a> › 
+            <span id="breadcrumb-post-title">Loading...</span>
+        </div>
+        
+        <div class="post-layout">
+            <aside id="toc-container" class="toc-container lg:col-start-1 lg:col-end-2">
+                <h3 class="font-bold mb-4">List of Contents</h3>
+                <ul id="toc-list" class="space-y-2">
+                    <li class="h-4 bg-gray-200 rounded w-3/4 animate-pulse"></li>
+                    <li class="h-4 bg-gray-200 rounded w-1/2 animate-pulse"></li>
+                    <li class="h-4 bg-gray-200 rounded w-2/3 animate-pulse"></li>
+                </ul>
+            </aside>
+
+            <article id="post-content-container" class="post-content-container lg:col-start-2 lg:col-end-4">
+                <div class="h-10 bg-gray-300 rounded w-3/4 mb-4 animate-pulse"></div>
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-12 h-12 bg-gray-300 rounded-full animate-pulse"></div>
+                    <div class="space-y-2">
+                        <div class="h-4 bg-gray-200 rounded w-24"></div>
+                        <div class="h-3 bg-gray-200 rounded w-32"></div>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="h-5 bg-gray-200 rounded w-full"></div>
+                    <div class="h-5 bg-gray-200 rounded w-5/6"></div>
+                    <div class="h-5 bg-gray-200 rounded w-full"></div>
+                    <div class="h-48 bg-gray-300 rounded-lg my-4"></div>
+                    <div class="h-5 bg-gray-200 rounded w-full"></div>
+                </div>
+            </article>
+
+            <aside id="related-container" class="related-container lg:col-start-4 lg:col-end-5">
+                <div id="related-game-container"></div>
+                <div id="related-news-container"></div>
+            </aside>
+        </div>
+    </main>
+    <div id="footer-placeholder"></div>
+    
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="supabase-client.js"></script>
+    <script type="module" src="components.js"></script>
+    <script type="module" src="post.js"></script>
+</body>
+</html>

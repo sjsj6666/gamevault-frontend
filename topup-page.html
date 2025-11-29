@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">GameVault - Game Top-up</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="topup-page.css">
+</head>
+<body>
+        <script type="application/ld+json" id="structured-data"></script> 
+    <div id="loading-screen" class="fixed inset-0 bg-white z-50 flex items-center justify-center">
+        <div class="text-center">
+            <div class="w-32 h-32 bg-gradient-to-br from-gray-200 to-gray-300 rounded-lg flex items-center justify-center text-6xl animate-pulse mx-auto mb-6">
+                <div class="w-16 h-16 bg-gray-300 rounded-full animate-bounce">🎮</div>
+            </div>
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">Loading Game Content</h2>
+            <p class="text-gray-600 mb-6">Preparing your top-up experience...</p>
+            <div class="w-64 h-2 bg-gray-200 rounded-full overflow-hidden mx-auto">
+                <div class="h-full bg-orange-500 rounded-full animate-pulse" style="animation: loadingBar 2s ease-in-out infinite"></div>
+            </div>
+            <div class="mt-8 text-sm text-gray-500 space-y-2">
+                <div class="loading-tip hidden opacity-0 transition-opacity duration-300">🎯 Fast & Secure Top-ups</div>
+                <div class="loading-tip hidden opacity-0 transition-opacity duration-300">⚡ Instant Delivery</div>
+                <div class="loading-tip hidden opacity-0 transition-opacity duration-300">🛡️ 100% Safe Guarantee</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="header-placeholder"></div>
+        <!-- ADD THE MOBILE SEARCH OVERLAY HERE -->
+    <div id="mobile-search-overlay" class="mobile-search-overlay">
+      <div class="mobile-search-bar">
+        <button id="mobile-search-back-btn" class="mobile-search-back-btn">←</button>
+        <input type="text" id="mobile-search-input" class="mobile-search-input" placeholder="Search games or goods" autocomplete="off">
+      </div>
+      <div id="mobile-search-results" class="mobile-search-results">
+        <!-- Search results will appear here -->
+      </div>
+    </div>
+
+    <div class="bg-white border-b">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between flex-wrap">
+            <div class="text-sm text-gray-600 mb-2 sm:mb-0">
+                <a href="/" class="cursor-pointer hover:text-blue-600">🏠 Home</a> › 
+                <a href="games.html" class="cursor-pointer hover:text-blue-600">Top-Up</a> › 
+                <span id="breadcrumb-game" class="font-semibold">Game Top-Up</span>
+            </div>
+            <div class="flex items-center gap-2 text-xs sm:text-sm">
+                <span class="font-semibold">Excellent</span>
+                <div class="flex"><span class="text-green-500">★★★★★</span></div>
+                <span>27,260 reviews on</span>
+                <span class="font-semibold">Trustpilot</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <div class="lg:col-span-2 space-y-6">
+                <div class="bg-white rounded-lg p-4 sm:p-6 shadow-sm">
+                    
+                    <!-- HEADER LAYOUT -->
+                    <div class="flex flex-col lg:flex-row gap-6">
+                        <!-- Group Logo and Details in a Row Container -->
+                        <div class="flex flex-row gap-4 sm:gap-6 flex-1">
+                            <!-- Icon -->
+                            <div id="game-icon" class="w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-br from-orange-400 to-orange-600 rounded-lg flex items-center justify-center text-4xl sm:text-6xl flex-shrink-0">🎮</div>
+                            
+                            <!-- Text Details -->
+                            <div class="flex-1 text-left">
+                                <h1 id="game-title" class="text-xl sm:text-3xl font-bold mb-2 leading-tight">Loading Game...</h1>
+                                
+                                <div class="flex flex-wrap items-center gap-x-4 gap-y-1 mb-2">
+                                    <span class="flex items-center gap-1 text-xs sm:text-sm">⚡ Fast</span>
+                                    <span class="flex items-center gap-1 text-xs sm:text-sm">✓ Safe</span>
+                                    <span class="flex items-center gap-1 text-xs sm:text-sm">🔄 24/7</span>
+                                </div>
+                                
+                                <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+                                    <span id="game-rating-value" class="bg-yellow-400 text-black px-1.5 py-0.5 sm:px-3 sm:py-1 rounded font-bold text-xs sm:text-base">...</span>
+                                    <div id="game-rating-stars" class="flex text-yellow-400 text-xs sm:text-base">☆☆☆☆☆</div>
+                                    <span id="game-review-count" class="text-gray-600 text-xs sm:text-sm">...</span>
+                                    <span id="game-sales-count" class="text-gray-600 text-xs sm:text-sm">... Sold</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Invite Box: FUNCTIONAL NOW -->
+                        <div class="bg-gradient-to-br from-yellow-100 to-orange-100 rounded-lg p-4 text-center lg:w-64 flex-shrink-0">
+                            <div id="invite-countdown" class="text-xs mb-2 font-mono text-orange-800">-- | -- | --</div>
+                            <div class="font-semibold mb-2 text-sm sm:text-base">Invite Friends and Get<br>3*15% OFF Discount</div>
+                            <button id="invite-btn" class="bg-orange-500 text-white px-6 py-2 rounded hover:bg-orange-600 w-full sm:w-auto text-sm sm:text-base transition-colors shadow-sm">Invite Now</button>
+                        </div>
+                    </div>
+                    <!-- END HEADER LAYOUT -->
+
+                </div>
+
+                <div id="region-tabs-container" class="hidden"></div>
+
+                <div id="products-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                </div>
+
+                <div class="bg-white rounded-lg shadow-sm">
+                    <div class="flex border-b">
+                        <button id="tab-details" class="tab-btn px-4 py-3 text-sm sm:px-6 font-semibold text-orange-500 border-b-2 border-orange-500">Details</button>
+                        <button id="tab-reviews" class="tab-btn px-4 py-3 text-sm sm:px-6 font-semibold text-gray-600">Review(0)</button>
+                    </div>
+                    <div class="p-4 sm:p-6">
+                        <div id="details-content" class="tab-content">
+                            <h2 class="text-xl font-bold mb-4">Top-up instructions</h2>
+                            <p class="text-gray-600 mb-4">Select the option that meets your needs from the above products, such as top up monochrome, and then fill in the information according to the top-up steps and complete the payment.</p>
+                        </div>
+                        <div id="reviews-content" class="tab-content hidden space-y-4">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-1">
+                <div class="bg-white rounded-lg shadow-sm p-6 sticky top-24">
+                    <h2 class="text-xl font-bold mb-6">Order Information</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">*UID</label>
+                            <input type="text" id="uid-input" placeholder="Enter your UID" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"/>
+                        </div>
+                        <div id="username-display" class="bg-green-50 border border-green-200 rounded-lg p-3 hidden">
+                            <div class="flex items-center gap-2"><span class="text-sm" id="username-text"></span></div>
+                        </div>
+                        <div id="server-id-container" class="hidden">
+                            <label class="block text-sm font-semibold mb-2">*Server/Zone ID</label>
+                            <input type="text" id="server-id-input" placeholder="Enter your Server/Zone ID" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"/>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">*Server Region</label>
+                            <div class="relative">
+                                <button id="server-dropdown-btn" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent bg-white flex items-center justify-between">
+                                    <span id="selected-server">Select Server</span>
+                                    <svg id="dropdown-icon" class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                </button>
+                                <div id="server-dropdown-menu" class="absolute z-10 w-full mt-1 bg-white border rounded-lg shadow-lg hidden scrollable-dropdown">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="character-selection-container" class="hidden">
+                            <label class="block text-sm font-semibold mb-2">*Character</label>
+                            <select id="character-select" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent bg-white">
+                                <option value="">-- Please Select Your Character --</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Quantity</label>
+                            <div class="flex items-center gap-3">
+                                <button id="qty-minus" class="w-10 h-10 border rounded-lg hover:bg-gray-50">-</button>
+                                <input type="text" id="quantity" value="1" readonly class="flex-1 text-center px-4 py-2 border rounded-lg"/>
+                                <button id="qty-plus" class="w-10 h-10 border rounded-lg hover:bg-gray-50">+</button>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-baseline mb-2">
+                                <span class="text-sm font-semibold">Price</span>
+                                <div>
+                                    <span class="text-xs text-gray-500">S$</span>
+                                    <span id="total-price" class="text-2xl font-bold text-orange-500">0.00</span>
+                                </div>
+                            </div>
+                            <div class="text-right text-sm text-orange-500 hidden" id="savings-section">
+                                Savings S$<span id="total-savings">0.00</span> ›
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <span id="progress-text" class="text-sm font-semibold text-gray-700">0% Complete</span>
+                                <span class="text-sm text-gray-500">3 steps</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div id="progress-fill" class="bg-green-500 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+                            </div>
+                            <ul id="requirements-list" class="mt-2 space-y-1 hidden">
+                            </ul>
+                        </div>
+                        <button id="topup-btn" class="w-full bg-gray-300 text-black font-bold py-3 rounded-lg transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed" disabled>Top-up Now</button>
+                        <div class="flex items-center justify-center gap-2 text-sm text-green-600">
+                            <span>Lootbar Security Guarantee</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="confirmation-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[2000] hidden">
+        <div class="bg-white rounded-lg p-6 max-w-sm w-full mx-4 relative text-center">
+            <button id="close-modal" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600 w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <h2 class="text-xl font-bold mb-4">Top Up Information Confirmation</h2>
+            <p class="text-gray-500 text-sm mb-6">Please confirm whether the top-up information you filled in is correct.</p>
+            <div class="space-y-3 text-left mb-8">
+                <div class="flex justify-between items-center py-2 border-b"><span class="text-gray-500">UID</span><span id="confirm-uid" class="font-semibold text-green-600"></span></div>
+                <div class="flex justify-between items-center py-2 border-b"><span class="text-gray-500">Server</span><span id="confirm-server" class="font-semibold text-green-600"></span></div>
+                <div class="flex justify-between items-center py-2 border-b"><span class="text-gray-500">In-game Name</span><span id="confirm-username" class="font-semibold text-green-600"></span></div>
+            </div>
+            <button id="confirm-purchase-btn" class="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 rounded-lg transition-colors">Continue to purchase</button>
+        </div>
+    </div>
+
+    <div id="warning-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[2000] hidden">
+        <div class="bg-white rounded-lg p-6 max-w-sm w-full mx-4 relative text-center">
+            <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span class="text-red-500 text-4xl font-bold">!</span>
+            </div>
+            <h2 class="text-xl font-bold mb-4">Warning</h2>
+            <p class="text-gray-500 text-sm mb-6">The <span class="font-bold text-red-500">Wrong UID or Server</span> you submitted will result in a recharge failure. Please return to submit the correct UID, Server and then complete the payment order.</p>
+            <div class="space-y-3">
+                <button id="change-uid-btn" class="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 rounded-lg transition-colors">Change UID/Server</button>
+                <button id="continue-anyway-btn" class="w-full text-gray-500 font-semibold py-2 rounded-lg hover:text-gray-700">Continue to purchase ></button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="description-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[2000] hidden">
+        <div class="bg-white rounded-lg p-6 max-w-sm w-full mx-4 relative">
+            <button id="close-description-modal" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600 w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <h2 class="text-xl font-bold mb-4">Product Description</h2>
+            <p id="modal-description-content" class="text-gray-600 text-sm"></p>
+        </div>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="supabase-client.js"></script>
+    <script type="module" src="components.js"></script>
+    <script type="module" src="topup-page.js"></script>
+
+    <style>
+        @keyframes loadingBar {
+            0% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        .product-card {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        .product-card:nth-child(1) { animation-delay: 0.1s; }
+        .product-card:nth-child(2) { animation-delay: 0.2s; }
+        .product-card:nth-child(3) { animation-delay: 0.3s; }
+        .product-card:nth-child(4) { animation-delay: 0.4s; }
+        .product-card:nth-child(5) { animation-delay: 0.5s; }
+        .product-card:nth-child(6) { animation-delay: 0.6s; }
+        
+        .region-tab {
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid #e5e7eb;
+            background-color: #f9fafb;
+            color: #4b5563;
+        }
+        .region-tab.active {
+            background-color: #fef3c7;
+            color: #d97706;
+            border-color: #fcd34d;
+        }
+    </style>
+</body>
+</html>

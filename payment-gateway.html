@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameVault - Complete Payment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Checkmark Animation */
+        .checkmark__circle { stroke-dasharray: 166; stroke-dashoffset: 166; stroke-width: 2; stroke-miterlimit: 10; stroke: #4caf50; fill: none; animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards; }
+        .checkmark { width: 56px; height: 56px; border-radius: 50%; display: block; stroke-width: 2; stroke: #fff; stroke-miterlimit: 10; margin: 10% auto; box-shadow: inset 0px 0px 0px #4caf50; animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both; }
+        .checkmark__check { transform-origin: 50% 50%; stroke-dasharray: 48; stroke-dashoffset: 48; animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards; }
+        @keyframes stroke { 100% { stroke-dashoffset: 0; } }
+        @keyframes scale { 0%, 100% { transform: none; } 50% { transform: scale3d(1.1, 1.1, 1); } }
+        @keyframes fill { 100% { box-shadow: inset 0px 0px 0px 30px #4caf50; } }
+    </style>
+</head>
+<body class="bg-gray-50">
+        <script type="application/ld+json" id="structured-data"></script> 
+    <div id="header-placeholder"></div>
+    <div id="mobile-search-overlay" class="mobile-search-overlay">
+      <div class="mobile-search-bar">
+        <button id="mobile-search-back-btn" class="mobile-search-back-btn">←</button>
+        <input type="text" id="mobile-search-input" class="mobile-search-input" placeholder="Search games or goods" autocomplete="off">
+      </div>
+      <div id="mobile-search-results" class="mobile-search-results"></div>
+    </div>
+
+    <main id="payment-view" class="max-w-4xl mx-auto px-4 py-12">
+        <div class="flex flex-wrap items-center justify-between mb-8 gap-4">
+            <a href="#" id="back-to-payment-btn" class="text-gray-600 font-semibold hover:text-gray-900">← Cancel Payment</a>
+            <div class="flex items-center gap-2">
+                <!-- PayNow Logo Placeholder -->
+                <div class="font-bold text-xl bg-purple-100 text-purple-700 px-3 py-1 rounded">PayNow</div>
+            </div>
+            <div id="payment-status-container" class="flex items-center gap-2 text-gray-500 text-sm">
+                <span>Payment code will expire in</span>
+                <div class="flex items-center gap-1 font-mono font-semibold bg-gray-200 px-2 py-1 rounded text-gray-800">
+                    <span id="countdown-minutes">00</span>:<span id="countdown-seconds">00</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-lg flex flex-col md:flex-row overflow-hidden">
+            <div class="w-full md:w-1/2 p-6 md:p-8 border-b md:border-b-0 md:border-r bg-gray-50">
+                <h2 class="text-lg font-semibold text-gray-500 mb-2">Total to pay</h2>
+                <p id="payment-amount" class="text-4xl md:text-5xl font-bold mb-8 text-gray-900">S$0.00</p>
+                <div class="space-y-4 text-gray-600">
+                    <div class="p-4 bg-white rounded-lg border border-gray-200 shadow-sm">
+                        <p class="font-semibold text-gray-800">Payment Instructions:</p>
+                        <ul class="list-disc list-inside text-sm mt-2 space-y-1">
+                            <li>Do not close this page.</li>
+                            <li>Payment is automatic.</li>
+                            <li>Ensure exact amount is paid.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 p-6 md:p-8 text-center bg-white">
+                <h2 class="text-xl font-bold mb-4 text-gray-800">Scan QR Code</h2>
+                <div id="qr-code-container" class="w-48 h-48 sm:w-56 sm:h-56 mx-auto rounded-lg overflow-hidden border-2 border-gray-100 p-2 shadow-inner bg-white flex items-center justify-center">
+                    <div class="animate-pulse bg-gray-200 w-full h-full rounded"></div>
+                </div>
+                 <div class="mt-6 text-left">
+                    <h3 class="font-semibold mb-3 text-gray-700">How to pay?</h3>
+                    <ol class="list-decimal list-inside text-gray-500 space-y-2 text-sm bg-gray-50 p-3 rounded-lg">
+                        <li>Open your banking app (DBS, OCBC, UOB, etc).</li>
+                        <li>Select <strong>"Scan & Pay"</strong>.</li>
+                        <li>Scan the QR code above.</li>
+                        <li>Wait for this page to refresh automatically.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <p class="text-center text-gray-400 text-xs mt-8">Reference ID: <span id="order-id" class="font-mono select-all"></span></p>
+    </main>
+
+    <main id="success-view" class="hidden max-w-md mx-auto px-4 py-12">
+        <div class="bg-white rounded-xl p-8 shadow-lg text-center border-t-4 border-green-500">
+            <!-- Content injected by JS -->
+        </div>
+    </main>
+    
+    <div id="footer-placeholder"></div>
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="supabase-client.js"></script>
+    <script type="module" src="components.js"></script>
+    <!-- New separate script file -->
+    <script type="module" src="payment-gateway.js"></script>
+</body>
+</html>

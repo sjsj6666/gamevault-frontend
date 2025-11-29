@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameVault - My Account</title>
+    
+    <!-- 1. Preconnect to critical 3rd party domains -->
+    <link rel="preconnect" href="https://wdaxevdkxuawyqpvajyt.supabase.co">
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://i.pravatar.cc">
+
+    <!-- 2. Preload CSS for faster rendering -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="account.css" as="style">
+
+    <!-- 3. Standard CSS Links -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="account.css">
+
+    <!-- 4. Defer Tailwind to unblock rendering -->
+    <script src="https://cdn.tailwindcss.com" defer></script>
+</head>
+<body class="bg-gray-100">
+    <script type="application/ld+json" id="structured-data"></script> 
+    <div id="toast-container"></div>
+    <div id="header-placeholder"></div>
+    
+    <!-- ADD THE MOBILE SEARCH OVERLAY HERE -->
+    <div id="mobile-search-overlay" class="mobile-search-overlay">
+      <div class="mobile-search-bar">
+        <button id="mobile-search-back-btn" class="mobile-search-back-btn">←</button>
+        <input type="text" id="mobile-search-input" class="mobile-search-input" placeholder="Search games or goods" autocomplete="off">
+      </div>
+      <div id="mobile-search-results" class="mobile-search-results">
+        <!-- Search results will appear here -->
+      </div>
+    </div>
+
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <div class="breadcrumb text-sm text-gray-600 mb-6">
+            <a href="index.html" class="hover:text-blue-600">Home</a> › <span id="breadcrumb-current-page">Account</span>
+        </div>
+
+        <div class="account-layout">
+            <aside class="account-sidebar">
+                <div class="user-profile-card">
+                    <div class="user-avatar-large">
+                        <img id="profile-avatar" src="https://i.pravatar.cc/80" alt="User Avatar">
+                    </div>
+                    <div class="user-info">
+                        <h2 id="profile-nickname" class="font-bold">Loading...</h2>
+                        <a href="#member" class="account-sidebar-link-subtle">Check VIP Benefits ›</a>
+                    </div>
+                </div>
+                <div class="user-stats-card">
+                    <div>
+                        <div id="profile-balance-sidebar" class="font-bold">$0.00</div>
+                        <div class="text-sm text-gray-500">Balance</div>
+                    </div>
+                    <div>
+                        <div id="profile-points-sidebar" class="font-bold">0</div>
+                        <div class="text-sm text-gray-500">Points <span class="new-badge">NEW</span></div>
+                    </div>
+                </div>
+                <nav id="account-nav" class="account-nav">
+                    <a href="#buy-history" class="account-sidebar-link" data-view="buy-history"><span>📋</span> Buy History</a>
+                    <a href="#coupons" class="account-sidebar-link" data-view="coupons"><span>🎫</span> Coupon</a>
+                    <a href="#settings" class="account-sidebar-link" data-view="settings"><span>⚙️</span> Settings</a>
+                    <a href="#help-center" class="account-sidebar-link" data-view="help-center"><span>❓</span> Help Center</a>
+                    <a href="#feedback" class="account-sidebar-link" data-view="feedback"><span>💬</span> Feedback</a>
+                    <a href="#invite" class="account-sidebar-link" data-view="invite"><span>🎁</span> Invite for Coupons</a>
+                    <a href="#affiliate" class="account-sidebar-link" data-view="affiliate"><span>💰</span> Affiliate Program</a>
+                </nav>
+            </aside>
+
+            <div class="account-content-area">
+                <div id="view-messages" class="account-view hidden"></div>
+                <div id="view-buy-history" class="account-view"></div>
+                <div id="view-order-details" class="account-view hidden bg-transparent shadow-none border-none p-0">
+                    <div id="order-details-skeleton">
+                        <div class="details-header animate-pulse">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-12 h-12 bg-gray-200 rounded-full"></div>
+                                <div>
+                                    <div class="h-6 bg-gray-200 rounded w-48 mb-2"></div>
+                                    <div class="h-4 bg-gray-200 rounded w-64"></div>
+                                </div>
+                            </div>
+                            <div class="details-product-card">
+                                <div class="details-product-image bg-gray-200"></div>
+                                <div class="details-product-info">
+                                    <div class="h-4 bg-gray-200 rounded w-32 mb-2"></div>
+                                    <div class="h-5 bg-gray-200 rounded w-48"></div>
+                                </div>
+                                <div class="h-8 bg-gray-200 rounded w-24"></div>
+                            </div>
+                        </div>
+                        <div class="details-info-section animate-pulse">
+                            <div class="h-6 bg-gray-200 rounded w-40 mb-6"></div>
+                            <div class="info-grid">
+                                <div class="skeleton-info-item"><div class="h-4 bg-gray-200 rounded w-24"></div><div class="h-4 bg-gray-200 rounded w-32"></div></div>
+                                <div class="skeleton-info-item"><div class="h-4 bg-gray-200 rounded w-20"></div><div class="h-4 bg-gray-200 rounded w-28"></div></div>
+                                <div class="skeleton-info-item"><div class="h-4 bg-gray-200 rounded w-28"></div><div class="h-4 bg-gray-200 rounded w-36"></div></div>
+                                <div class="skeleton-info-item"><div class="h-4 bg-gray-200 rounded w-16"></div><div class="h-4 bg-gray-200 rounded w-24"></div></div>
+                                <div class="skeleton-info-item"><div class="h-4 bg-gray-200 rounded w-32"></div><div class="h-4 bg-gray-200 rounded w-36"></div></div>
+                                <div class="skeleton-info-item"><div class="h-4 bg-gray-200 rounded w-20"></div><div class="h-4 bg-gray-200 rounded w-28"></div></div>
+                            </div>
+                        </div>
+                         <div class="flex gap-3 mt-6 animate-pulse">
+                            <div class="h-12 bg-gray-200 rounded-lg flex-1"></div>
+                            <div class="h-12 bg-gray-200 rounded-lg flex-1"></div>
+                            <div class="h-12 bg-gray-200 rounded-lg flex-1"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="view-coupons" class="account-view hidden"></div>
+                <div id="view-settings" class="account-view hidden"></div>
+                <div id="view-feedback" class="account-view hidden"></div>
+                <div id="view-invite" class="account-view hidden"></div>
+                <div id="view-affiliate" class="account-view hidden"></div>
+                <div id="view-member" class="account-view hidden"></div>
+                <div id="view-help-center" class="account-view hidden"></div>
+            </div>
+        </div>
+    </main>
+
+    <div id="settings-modal" class="modal-backdrop hidden">
+        <div class="modal-content"><button id="close-settings-modal" class="close-btn">&times;</button><h2 class="modal-title">Modify Information</h2><form id="settings-form" class="space-y-4"><div><label class="block text-sm font-semibold mb-1">Nickname</label><input type="text" id="nickname-input" class="p-2 border rounded w-full"></div><div><label class="block text-sm font-semibold mb-1">Avatar URL</label><input type="text" id="avatar-url-input" class="p-2 border rounded w-full"></div><button type="submit" class="w-full bg-yellow-400 text-black font-bold py-3 rounded-lg mt-4 hover:bg-yellow-500">Save Changes</button></form></div>
+    </div>
+
+    <div id="ticket-modal" class="modal-backdrop hidden">
+        <div class="modal-content"><button id="close-ticket-modal" class="close-btn">&times;</button><h2 class="modal-title">New Ticket</h2><form id="ticket-form" class="space-y-4"><div><label class="block text-sm font-semibold mb-1">Classification</label><select id="ticket-category" class="p-2 border rounded w-full bg-white"><option>Payment Issue</option><option>Order Problem</option><option>Account Issue</option><option>General Feedback</option></select></div><div><label class="block text-sm font-semibold mb-1">Question Content</label><textarea id="ticket-content" class="p-2 border rounded w-full h-32" placeholder="Please describe your issue in detail..."></textarea></div><button type="submit" class="w-full bg-yellow-400 text-black font-bold py-3 rounded-lg mt-4 hover:bg-yellow-500">Submit Ticket</button></form></div>
+    </div>
+
+    <div id="review-modal" class="modal-backdrop hidden">
+        <div class="modal-content">
+            <button id="close-review-modal" class="close-btn">&times;</button>
+            <h2 class="modal-title">Post a review</h2>
+            <p class="text-sm text-gray-600 mb-4">Earn <span class="text-orange-500 font-semibold">30 points</span> after writing the first review.</p>
+            <div class="flex justify-center gap-2 mb-6 text-4xl cursor-pointer" id="review-stars">
+                <span class="star" data-rating="1">☆</span>
+                <span class="star" data-rating="2">☆</span>
+                <span class="star" data-rating="3">☆</span>
+                <span class="star" data-rating="4">☆</span>
+                <span class="star" data-rating="5">☆</span>
+            </div>
+            <textarea id="review-comment" placeholder="Enter your review..." class="w-full h-32 p-2 border rounded-lg resize-none"></textarea>
+            <button id="submit-review-btn" class="w-full bg-yellow-400 text-black font-bold py-3 rounded-lg mt-4">Post a review</button>
+        </div>
+    </div>
+
+    <div id="footer-placeholder"></div>
+    
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="supabase-client.js"></script>
+    <script type="module" src="components.js"></script>
+    <script type="module" src="account.js"></script>
+</body>
+</html>

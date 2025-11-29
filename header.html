@@ -1,0 +1,145 @@
+<!-- 1. MAIN NAVIGATION BAR -->
+<header>
+  <nav>
+    <div class="nav-left">
+      <!-- Hamburger Button -->
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <a href="/" class="logo">GAMEVAULT</a>
+    </div>
+
+    <!-- Desktop Links -->
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/">Home</a></li>
+      <li class="nav-item desktop-games-nav">
+        <a href="/games.html">Games ▾</a>
+        <div class="dropdown"></div>
+      </li>
+      <li><a href="/blog.html">Blog</a></li>
+      <li class="nav-item">
+        <a href="#">Help Center ▾</a>
+        <div class="dropdown help-dropdown">
+          <a href="/account.html#help-center" class="dropdown-item"><span>📚</span><span>FAQs</span><span class="arrow">›</span></a>
+          <a href="/account.html#feedback" class="dropdown-item"><span>💬</span><span>Feedback</span><span class="arrow">›</span></a>
+        </div>
+      </li>
+    </ul>
+
+    <div class="nav-right">
+      <!-- Search Bar -->
+      <div class="search-wrapper">
+        <div class="search-container" id="searchContainer">
+          <svg class="search-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/></svg>
+          <input type="text" class="search-input" id="searchInput" placeholder="Search games or goods" autocomplete="off">
+        </div>
+        <div id="search-results-container" class="search-results-container"></div>
+      </div>
+
+      <!-- Mobile Search Icon -->
+      <button id="mobile-search-trigger" class="mobile-search-trigger">
+        <svg class="search-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/></svg>
+      </button>
+
+      <!-- Login Button -->
+      <button id="header-signin-btn" class="header-signin-btn">Log in / Sign up</button>
+      
+      <!-- Logged In Icons (Envelope is HIDDEN by default) -->
+      <a href="/account.html#messages" id="header-messages-icon" class="text-white text-2xl relative hidden">✉️</a>
+      
+      <!-- User Profile Dropdown -->
+      <div class="nav-item profile-area hidden">
+        <div class="user-avatar"></div>
+        <div class="dropdown profile-dropdown">
+          <div id="profile-logged-in" style="display: none;">
+            <div class="profile-header">
+              <div class="profile-avatar"><img id="header-profile-avatar" src="https://i.pravatar.cc/50" alt="avatar"></div>
+              <div class="profile-info">
+                <div class="profile-id" id="profile-id">User</div>
+                <a href="/account.html#member" class="profile-vip">Check VIP Benefits ›</a>
+              </div>
+            </div>
+            <div class="profile-stats">
+              <div class="stat-item"><span class="stat-value" id="profile-balance">$0.00</span><span class="stat-label">Balance</span></div>
+              <div class="stat-divider"></div>
+              <div class="stat-item"><span class="stat-value" id="profile-points">0</span><span class="stat-label">Points <span class="new-badge">NEW</span></span></div>
+            </div>
+            <ul class="profile-menu">
+              <li><a href="/account.html#buy-history" class="profile-menu-item"><div class="item-content"><span class="item-icon">📋</span><span>Buy History</span></div><div class="item-indicator">›</div></a></li>
+              <li><a href="/account.html#coupons" class="profile-menu-item"><div class="item-content"><span class="item-icon">🎫</span><span>Coupon</span></div><div class="item-indicator"><span id="coupon-count">0</span>›</div></a></li>
+              <li><a href="/account.html#settings" class="profile-menu-item"><div class="item-content"><span class="item-icon">⚙️</span><span>Settings</span></div><div class="item-indicator">›</div></a></li>
+              <li><a href="#" id="logout-button" class="profile-menu-item"><div class="item-content"><span class="item-icon">🚪</span><span>Log out</span></div></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- 2. MOBILE SIDEBAR -->
+<div id="sidebar-overlay" class="sidebar-overlay"></div>
+<aside id="mobile-sidebar" class="mobile-sidebar">
+    <div class="sidebar-header">
+      <button id="sidebar-close-btn" class="sidebar-close-btn">&times;</button>
+    </div>
+
+    <!-- Profile Section inside Sidebar -->
+    <div id="sidebar-profile-section">
+        <a href="account.html" id="sidebar-profile-link" class="sidebar-profile-link" style="display: none;"> 
+            <div class="sidebar-avatar"><img src="https://i.pravatar.cc/50" alt="avatar"></div>
+            <span id="sidebar-nickname">User</span>
+        </a>
+        <div id="sidebar-login-prompt" class="sidebar-login-prompt">
+            <div class="sidebar-avatar">👤</div>
+            <span class="sidebar-login-btn" style="cursor: pointer;">Sign in</span>
+        </div>
+    </div>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar-main-nav">
+        <ul>
+            <li>
+                <a href="/">
+                    <span class="nav-icon">🏠</span>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li class="has-submenu">
+                <a href="#" id="sidebar-games-toggle" class="submenu-toggle">
+                    <span class="nav-icon">🎮</span>
+                    <span>Games</span>
+                    <span class="arrow">›</span>
+                </a>
+                <ul id="sidebar-games-list" class="sidebar-submenu">
+                    <!-- JS populates this -->
+                </ul>
+            </li>
+            <li>
+                <a href="/blog.html">
+                    <span class="nav-icon">✍️</span>
+                    <span>Blog</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="sidebar-footer">
+        <p class="text-xs text-gray-400 text-center">© 2025 GameVault</p>
+    </div>
+</aside>
+
+<!-- 3. AUTH MODAL -->
+<div id="auth-modal" class="modal-backdrop hidden">
+  <div class="auth-modal-content">
+    <button id="close-auth-modal" class="close-btn">&times;</button>
+    <h2 class="modal-title">Log in / Sign up</h2>
+    <div class="auth-providers">
+      <button class="auth-provider-btn" data-provider="google" title="Continue with Google">G</button>
+      <button class="auth-provider-btn" data-provider="email" title="Continue with Email">✉️</button>
+    </div>
+    <p class="auth-legal-text">
+      By continuing, you agree to the <a href="#" class="auth-link">Terms of Service</a>.
+    </p>
+  </div>
+</div>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameVault - Order Details</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="order-details.css">
+</head>
+<body>
+        <script type="application/ld+json" id="structured-data"></script> 
+    <div id="header-placeholder"></div>
+
+        <!-- ADD THE MOBILE SEARCH OVERLAY HERE -->
+    <div id="mobile-search-overlay" class="mobile-search-overlay">
+      <div class="mobile-search-bar">
+        <button id="mobile-search-back-btn" class="mobile-search-back-btn">←</button>
+        <input type="text" id="mobile-search-input" class="mobile-search-input" placeholder="Search games or goods" autocomplete="off">
+      </div>
+      <div id="mobile-search-results" class="mobile-search-results">
+        <!-- Search results will appear here -->
+      </div>
+    </div>
+    <div class="bg-white border-b">
+        <div class="max-w-7xl mx-auto px-4 py-3">
+            <div class="text-sm text-gray-600">
+                <a href="index.html" class="cursor-pointer hover:text-blue-600">🏠 Home</a> › 
+                <a href="#" class="cursor-pointer hover:text-blue-600" onclick="goToBuyHistory()">Buy History</a> › 
+                <span class="font-semibold">Order Details</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <div class="lg:col-span-1 hidden lg:block">
+                <div class="bg-white rounded-lg p-6 shadow-sm">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-gray-600 to-gray-800 rounded-full flex items-center justify-center text-white font-bold relative">
+                            👤
+                            <div class="absolute bottom-0 right-0 w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center text-xs font-bold text-black">17</div>
+                        </div>
+                        <div>
+                            <div class="font-bold">U1071457295</div>
+                            <button class="text-sm text-blue-500 flex items-center gap-1">
+                                Check VIP Benefits 🔴 ›
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold">$0.00</div>
+                            <div class="text-sm text-gray-600">Balance</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold flex items-center justify-center gap-1">🪙 36</div>
+                            <div class="text-sm text-gray-600">
+                                Points <span class="text-xs bg-red-500 text-white px-1 rounded">NEW</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-2">
+                        <button onclick="goToBuyHistory()" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg bg-yellow-50 text-yellow-600 font-semibold">
+                            📋 Buy History
+                            <span class="ml-auto w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center text-xs">1</span>
+                        </button>
+                        <button class="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-50 text-left">
+                            🎫 Coupon
+                        </button>
+                        <button class="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-50 text-left">
+                            ⚙️ Settings
+                        </button>
+                        <button class="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-50 text-left">
+                            ❓ Help Center
+                        </button>
+                        <button class="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-50 text-left">
+                            💬 Feedback
+                        </button>
+                        <button class="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-50 text-left">
+                            🎁 Invite for Coupons
+                        </button>
+                        <button class="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-50 text-left">
+                            💰 Affiliate Program
+                        </button>
+                        <button class="w-full text-left px-4 py-2 text-orange-500 font-semibold">
+                            Earn up to 10% money
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-3">
+                <div class="space-y-6">
+                    <button onclick="goToBuyHistory()" class="flex items-center gap-2 text-gray-600 hover:text-gray-800">
+                        ← Back to Buy History
+                    </button>
+                    <div id="order-status-card" class="bg-white rounded-lg p-6 shadow-sm"></div>
+                    <div id="order-info-card" class="bg-white rounded-lg p-6 shadow-sm"></div>
+                    <div id="action-buttons" class="flex flex-col sm:flex-row gap-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="review-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4 relative">
+            <button id="close-review-modal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">✕</button>
+            <h2 class="text-2xl font-bold mb-4">Post a review</h2>
+            <p class="text-sm text-gray-600 mb-4">
+                Earn <span class="text-orange-500 font-semibold">30 points</span> after writing the first review each day
+            </p>
+            <div class="flex justify-center gap-2 mb-6">
+                <span class="star text-4xl cursor-pointer" data-rating="1">☆</span>
+                <span class="star text-4xl cursor-pointer" data-rating="2">☆</span>
+                <span class="star text-4xl cursor-pointer" data-rating="3">☆</span>
+                <span class="star text-4xl cursor-pointer" data-rating="4">☆</span>
+                <span class="star text-4xl cursor-pointer" data-rating="5">☆</span>
+            </div>
+            <div class="mb-6">
+                <label class="block text-sm font-semibold mb-2">Your comment</label>
+                <textarea id="review-comment" placeholder="Welcome to provide your feedback, please enter your review." class="w-full h-32 px-4 py-2 border rounded-lg resize-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" maxlength="200"></textarea>
+                <div class="text-right text-sm text-gray-500 mt-1"><span id="review-chars">0</span>/200</div>
+            </div>
+            <button id="submit-review-btn" class="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 rounded-lg transition-colors">Post a review</button>
+        </div>
+    </div>
+
+    <div id="service-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4 relative">
+            <button id="close-service-modal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">✕</button>
+            <h2 class="text-2xl font-bold mb-6">New Ticket</h2>
+            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-3 mb-6">
+                <p class="text-sm text-gray-700 flex items-center gap-2">🎤 Submit your question or suggestion</p>
+            </div>
+            <div class="mb-6">
+                <label class="block text-sm font-semibold mb-2">Classification</label>
+                <div class="relative">
+                    <button id="classification-btn" class="w-full px-4 py-2 border rounded-lg bg-white flex items-center justify-between text-left">
+                        <span id="selected-classification">After-sales application</span>
+                        <span>▼</span>
+                    </button>
+                    <div id="classification-menu" class="absolute z-10 w-full mt-1 bg-white border rounded-lg shadow-lg hidden">
+                        <button class="classification-option w-full px-4 py-2 text-left hover:bg-gray-100" data-classification="After-sales application">After-sales application</button>
+                        <button class="classification-option w-full px-4 py-2 text-left hover:bg-gray-100" data-classification="Payment issue">Payment issue</button>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-6">
+                <label class="block text-sm font-semibold mb-2">Question content</label>
+                <textarea id="service-question" placeholder="Please describe your issue..." class="w-full h-32 px-4 py-2 border rounded-lg resize-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" maxlength="400"></textarea>
+                <div class="text-right text-sm text-gray-500 mt-1"><span id="service-chars">0</span>/400</div>
+            </div>
+            <button id="submit-ticket-btn" class="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 rounded-lg transition-colors">Submit Ticket</button>
+        </div>
+    </div>
+
+    <div class="fixed bottom-8 right-8 z-30">
+        <div class="bg-yellow-400 rounded-full p-4 shadow-lg cursor-pointer hover:bg-yellow-500 transition-colors flex items-center gap-2">
+            <span class="text-xl">🎧</span>
+            <span class="font-semibold">24/7</span>
+        </div>
+    </div>
+    
+    <div id="footer-placeholder"></div>
+    
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="supabase-client.js"></script>
+    <script type="module" src="components.js"></script>
+    <script type="module" src="order-details.js"></script>
+</body>
+</html>

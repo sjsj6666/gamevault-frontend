@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameVault - Blog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="blog.css">
+</head>
+<body class="bg-gray-100">
+        <script type="application/ld+json" id="structured-data"></script> 
+    <div id="header-placeholder"></div>
+        <!-- ADD THE MOBILE SEARCH OVERLAY HERE -->
+    <div id="mobile-search-overlay" class="mobile-search-overlay">
+      <div class="mobile-search-bar">
+        <button id="mobile-search-back-btn" class="mobile-search-back-btn">←</button>
+        <input type="text" id="mobile-search-input" class="mobile-search-input" placeholder="Search games or goods" autocomplete="off">
+      </div>
+      <div id="mobile-search-results" class="mobile-search-results">
+        <!-- Search results will appear here -->
+      </div>
+    </div>
+
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <div class="text-sm text-gray-600 mb-6">
+            <a href="index.html" class="hover:text-blue-600">Home</a> › <span>Blog</span>
+        </div>
+
+        <div class="blog-header">
+            <h1 class="text-3xl font-bold">Blog</h1>
+            <div class="search-container">
+                <input type="text" id="blog-search-input" placeholder="Search in GameVault Blog">
+                <button id="blog-search-btn">🔍</button>
+            </div>
+        </div>
+
+        <nav id="category-filters" class="category-filters">
+            <button class="filter-tab active" data-category="All">All</button>
+            <button class="filter-tab" data-category="News">News</button>
+            <button class="filter-tab" data-category="Guide">Guide</button>
+            <button class="filter-tab" data-category="Event">Event</button>
+            <button class="filter-tab" data-category="Codes">Codes</button>
+        </nav>
+
+        <div id="posts-container" class="posts-container">
+            <!-- Skeleton loaders will be shown here -->
+        </div>
+
+        <div id="pagination-container" class="pagination-container">
+            <!-- Pagination buttons will be rendered here -->
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+    
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="supabase-client.js"></script>
+    <script type="module" src="components.js"></script>
+    <script type="module" src="blog.js"></script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+.main-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+    .main-layout {
+        grid-template-columns: 240px 1fr;
+        gap: 2rem;
+    }
+}
+
+
+.sidebar {
+    background: white;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    height: fit-content;
+}
+
+.category-list .category-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.8rem;
+    border-radius: 8px;
+    font-weight: 500;
+    color: #374151;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.category-list .category-item:hover {
+    background-color: #f3f4f6;
+}
+
+.category-list .category-item.active {
+    background-color: #fffbeb;
+    color: #d97706;
+    font-weight: 600;
+}
+
+.category-item .icon {
+    font-size: 1.25rem;
+}
+
+.category-item .count {
+    margin-left: auto;
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.category-item.active .count {
+    color: #d97706;
+}
+
+.content-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+@media (min-width: 640px) {
+    .content-header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
+    }
+}
+
+.filters {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.filter-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    font-weight: 600;
+    background-color: #f3f4f6;
+    color: #4b5563;
+    cursor: pointer;
+}
+
+.filter-btn.active {
+    background-color: #fffbeb;
+    color: #d97706;
+}
+
+@keyframes shimmer {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+}
+
+.shimmer {
+    animation: shimmer 2s infinite linear;
+    background: linear-gradient(to right, #eff1f3 4%, #e2e2e2 25%, #eff1f3 36%);
+    background-size: 1000px 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1023px) {
+    .sidebar {
+        /* Hide sidebar on tablets and below, or turn it into a horizontal filter bar */
+        display: none; 
+    }
+}
+
+@media (max-width: 640px) {
+    .game-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+    }
+
+    #category-title {
+        font-size: 1.75rem;
+    }
+}

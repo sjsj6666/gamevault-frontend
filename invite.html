@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You've Been Invited! - GameVault</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .gift-bounce { animation: bounce 2s infinite; }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(-5%); }
+            50% { transform: translateY(5%); }
+        }
+        .confetti { position: absolute; width: 10px; height: 10px; background-color: #f00; animation: fall linear forwards; }
+        @keyframes fall { to { transform: translateY(100vh) rotate(720deg); } }
+    </style>
+</head>
+<body class="bg-gray-50 flex items-center justify-center min-h-screen relative overflow-hidden">
+        <script type="application/ld+json" id="structured-data"></script> 
+    
+    <!-- Toast Container for Custom Notifications -->
+    <div id="toast-container"></div>
+
+    <!-- Hidden Header Placeholder to load global components (Auth Modal, etc.) -->
+    <div id="header-placeholder" style="display: none;"></div>
+
+    <!-- Background decoration -->
+    <div class="absolute inset-0 z-0 opacity-10" style="background-image: url('https://img.freepik.com/free-vector/gaming-pattern-background_23-2148066743.jpg'); background-size: cover;"></div>
+
+    <div class="bg-white p-8 rounded-2xl shadow-2xl max-w-md w-full z-10 text-center relative border-t-4 border-yellow-400">
+        
+        <div class="absolute -top-12 left-1/2 transform -translate-x-1/2 w-24 h-24 bg-white rounded-full flex items-center justify-center shadow-lg">
+            <span class="text-5xl gift-bounce">🎁</span>
+        </div>
+
+        <h1 class="mt-10 text-3xl font-bold text-gray-800">You've been invited!</h1>
+        <p class="text-gray-500 mt-2">Join GameVault today and claim your exclusive welcome reward.</p>
+
+        <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-4 my-6">
+            <div class="text-sm text-yellow-800 font-bold uppercase tracking-wide">Your Reward</div>
+            <div class="text-4xl font-black text-gray-900 mt-1">15% OFF</div>
+            <div class="text-xs text-gray-500 mt-1">Valid for your first 3 purchases</div>
+        </div>
+
+        <div id="claim-section">
+            <button id="claim-btn" class="w-full bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white font-bold py-4 rounded-xl shadow-lg transform transition hover:scale-105 text-lg">
+                Claim Now
+            </button>
+            <p class="text-xs text-gray-400 mt-4">New users only. Terms apply.</p>
+        </div>
+
+        <div id="success-message" class="hidden">
+            <div class="text-green-500 text-5xl mb-4">✓</div>
+            <h3 class="text-xl font-bold text-gray-800">Coupons Claimed!</h3>
+            <p class="text-gray-600 mb-6">The coupons have been added to your account.</p>
+            <a href="index.html" class="block w-full bg-gray-900 text-white font-bold py-3 rounded-lg hover:bg-gray-800">
+                Start Shopping
+            </a>
+        </div>
+        
+        <div id="error-message" class="hidden mt-4 p-3 bg-red-100 text-red-700 rounded-lg text-sm"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-client.js"></script>
+    <!-- Load components.js to get showToast and global auth modal logic -->
+    <script src="components.js"></script> 
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const claimBtn = document.getElementById('claim-btn');
+            const successMsg = document.getElementById('success-message');
+            const claimSection = document.getElementById('claim-section');
+            const errorMsg = document.getElementById('error-message');
+            const startShoppingBtn = successMsg.querySelector('a');
+
+            // 1. Get URL Parameters
+            const params = new URLSearchParams(window.location.search);
+            const referrerId = params.get('ref');
+            const nextUrl = params.get('next'); 
+
+            if (nextUrl) {
+                const decodedUrl = decodeURIComponent(nextUrl);
+                startShoppingBtn.href = decodedUrl;
+                startShoppingBtn.textContent = "Return to Game Top-up";
+            }
+
+            if (!referrerId) {
+                claimBtn.disabled = true;
+                claimBtn.textContent = "Invalid Invite Link";
+                return;
+            }
+
+            // 2. Handle Click
+            claimBtn.addEventListener('click', async () => {
+                const { data: { session } } = await supabase.auth.getSession();
+
+                if (!session) {
+                    // Save params for after login
+                    localStorage.setItem('pending_referral', referrerId);
+                    if(nextUrl) localStorage.setItem('referral_next', nextUrl);
+                    
+                    // USE GLOBAL AUTH MODAL from components.js
+                    // Ensure components.js has finished initializing
+                    if (window.showAuthModal) {
+                        window.showAuthModal();
+                    } else {
+                        console.error("Auth modal function not found. Ensure components.js is loaded.");
+                        // Fallback if components.js isn't ready (rare but possible)
+                        const authModal = document.getElementById('auth-modal');
+                        if(authModal) authModal.classList.remove('hidden');
+                    }
+                } else {
+                    processClaim(session.user.id, referrerId);
+                }
+            });
+
+            // 3. Check for pending referral (Post-Login)
+            const { data: { session } } = await supabase.auth.getSession();
+            const pendingRef = localStorage.getItem('pending_referral');
+            if (session && pendingRef) {
+                const savedNext = localStorage.getItem('referral_next');
+                if (savedNext) {
+                    startShoppingBtn.href = decodeURIComponent(savedNext);
+                }
+                processClaim(session.user.id, pendingRef);
+                localStorage.removeItem('pending_referral');
+                localStorage.removeItem('referral_next');
+            }
+
+            async function processClaim(userId, refId) {
+                claimBtn.textContent = "Processing...";
+                claimBtn.disabled = true;
+                errorMsg.classList.add('hidden');
+
+                try {
+                    const { data, error } = await supabase.rpc('claim_referral_reward', {
+                        referrer_id_input: refId
+                    });
+
+                    if (error) throw error;
+
+                    if (data && data.success) {
+                        fireConfetti();
+                        claimSection.classList.add('hidden');
+                        successMsg.classList.remove('hidden');
+                        // Custom Toast Notification
+                        if(window.showToast) showToast("Coupon Claimed Successfully!", "success");
+                        
+                        if (nextUrl) {
+                            setTimeout(() => {
+                                window.location.href = decodeURIComponent(nextUrl);
+                            }, 3000); 
+                        }
+                    } else {
+                        throw new Error(data?.message || 'Claim failed');
+                    }
+
+                } catch (err) {
+                    console.error("Claim Error:", err);
+                    errorMsg.textContent = err.message;
+                    errorMsg.classList.remove('hidden');
+                    claimBtn.textContent = "Claim Failed";
+                    
+                    // Custom Toast Notification for Error
+                    if(window.showToast) showToast(err.message, "error");
+                }
+            }
+
+            function fireConfetti() {
+                for(let i=0; i<50; i++) {
+                    const c = document.createElement('div');
+                    c.className = 'confetti';
+                    c.style.left = Math.random() * 100 + 'vw';
+                    c.style.backgroundColor = ['#ff0', '#f00', '#0f0', '#00f'][Math.floor(Math.random()*4)];
+                    c.style.animationDuration = (Math.random() * 2 + 1) + 's';
+                    document.body.appendChild(c);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
